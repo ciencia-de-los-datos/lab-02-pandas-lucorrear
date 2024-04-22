@@ -120,7 +120,9 @@ def pregunta_07():
     E    67
     Name: _c2, dtype: int64
     """
-    return
+    tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
+    return tbl0.groupby('_c1')['_c2'].sum()
+print(pregunta_07())
 
 
 def pregunta_08():
@@ -138,7 +140,10 @@ def pregunta_08():
     39   39   E    5  1998-01-26    44
 
     """
-    return
+    tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
+    tbl0['suma'] = tbl0['_c0'] + tbl0['_c2']
+    return tbl0
+print(pregunta_08())
 
 
 def pregunta_09():
@@ -156,7 +161,10 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    return
+    tbl0 = pd.read_csv ("tbl0.tsv", sep="\t")
+    tbl0['year'] = tbl0['_c3'].str.split('-').str[0]
+    return tbl0
+print(pregunta_09())
 
 
 def pregunta_10():
