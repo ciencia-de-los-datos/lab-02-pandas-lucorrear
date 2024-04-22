@@ -181,7 +181,10 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return
+    tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
+    tbl0_grouped = tbl0.groupby('_c1')['_c2'].apply(lambda x: ':'.join(sorted(x.astype(str)))).reset_index()
+    return tbl0_grouped
+print(pregunta_10())
 
 
 def pregunta_11():
@@ -200,7 +203,10 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    return
+    tbl1 = pd.read_csv("tbl1.tsv", sep="\t")
+    tbl1_grouped = tbl1.groupby('_c0')['_c4'].apply(lambda x: ','.join(sorted(x))).reset_index()
+    return tbl1_grouped
+print(pregunta_11())
 
 
 def pregunta_12():
@@ -218,7 +224,10 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    return
+    tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
+    tbl2_grouped = tbl2.groupby('_c0').apply(lambda x: ','.join([f"{a}:{b}" for a, b in sorted(zip(x['_c5a'], x['_c5b']))])).reset_index(name='_c5')
+    return tbl2_grouped
+print(pregunta_12())
 
 
 def pregunta_13():
@@ -235,4 +244,9 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-    return
+    tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
+    tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
+    merged = pd.merge(tbl0, tbl2, on= '_c0')
+    sum_by_c1 = merged.groupby('_c1')['_c5b'].sum()
+    return sum_by_c1
+print(pregunta_13())
