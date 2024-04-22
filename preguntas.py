@@ -68,7 +68,8 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+    return tbl0.groupby('_c1')['_c2'].mean()
+print(pregunta_04)
 
 
 def pregunta_05():
@@ -85,7 +86,8 @@ def pregunta_05():
     E    9
     Name: _c2, dtype: int64
     """
-    return
+    return tbl0.groupby('_c1')['_c2'].max()
+print(pregunta_05())
 
 
 def pregunta_06():
@@ -97,7 +99,12 @@ def pregunta_06():
     ['A', 'B', 'C', 'D', 'E', 'F', 'G']
 
     """
-    return
+    tbl1 = pd.read_csv("tbl1.tsv", sep="\t")
+    unique_values = tbl1['_c4'].unique()
+    unique_values_upper = [value.upper() for value in unique_values]
+    unique_values_upper_sorted = sorted(unique_values_upper)
+    return unique_values_upper_sorted
+print(pregunta_06())
 
 
 def pregunta_07():
