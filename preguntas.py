@@ -177,9 +177,11 @@ def pregunta_10():
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
     l = tbl0.copy()
-    tbl0_grouped = l.groupby('_c1')['_c2'].apply(lambda x: ':'.join(sorted(x.astype(str)))).reset_index()
+    def map_series(x):
+        return ':'.join(sorted(x.map(str)))
+    tbl0_grouped = l.groupby('_c1')['_c2'].apply(map_series).reset_index()
+    tbl0_grouped.set_index('_c1', inplace=True)
     return tbl0_grouped
-
 
 
 def pregunta_11():
@@ -218,8 +220,10 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    tbl2_grouped = tbl2.groupby('_c0').apply(lambda x: ','.join([f"{a}:{b}" for a, b in sorted(zip(x['_c5a'], x['_c5b']))])).reset_index(name='_c5')
-    return tbl2_grouped
+    tbl2['_c5'] = tbl2['_c5a'] + ':' + tbl2['_c5b'].astype(str)
+    tabla = tbl2.groupby('_c0')['_c5'].agg(lambda values: ','.join(str(v) for v in sorted(values))).reset_index()
+    return tabla
+
 
 
 
