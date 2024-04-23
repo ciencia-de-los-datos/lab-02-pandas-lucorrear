@@ -22,7 +22,6 @@ def pregunta_01():
     40
 
     """
-    
     return tbl0.shape[0]
 
 
@@ -68,7 +67,7 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return tbl0.groupby('_c1')['_c2'].mean().sort_index() 
+    return tbl0.groupby('_c1')['_c2'].mean().sort_index()
 
 
 
@@ -244,4 +243,4 @@ def pregunta_13():
     merged = pd.merge(tbl0, tbl2, on= '_c0')
     sum_by_c1 = merged.groupby('_c1')['_c5b'].sum()
     return sum_by_c1 
-
+                    
