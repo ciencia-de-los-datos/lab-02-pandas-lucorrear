@@ -24,7 +24,7 @@ def pregunta_01():
     """
     
     return tbl0.shape[0]
-print(pregunta_01())
+
 
 
 def pregunta_02():
@@ -36,7 +36,7 @@ def pregunta_02():
 
     """
     return tbl0.shape[1]
-print(pregunta_02())
+
 
 
 def pregunta_03():
@@ -54,7 +54,7 @@ def pregunta_03():
 
     """
     return tbl0['_c1'].value_counts().sort_index()
-print(pregunta_03())
+
 
 def pregunta_04():
     """
@@ -69,7 +69,7 @@ def pregunta_04():
     Name: _c2, dtype: float64
     """
     return tbl0.groupby('_c1')['_c2'].mean()
-print(pregunta_04)
+
 
 
 def pregunta_05():
@@ -87,7 +87,7 @@ def pregunta_05():
     Name: _c2, dtype: int64
     """
     return tbl0.groupby('_c1')['_c2'].max()
-print(pregunta_05())
+
 
 
 def pregunta_06():
@@ -104,7 +104,7 @@ def pregunta_06():
     unique_values_upper = [value.upper() for value in unique_values]
     unique_values_upper_sorted = sorted(unique_values_upper)
     return unique_values_upper_sorted
-print(pregunta_06())
+
 
 
 def pregunta_07():
@@ -122,7 +122,7 @@ def pregunta_07():
     """
     tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
     return tbl0.groupby('_c1')['_c2'].sum()
-print(pregunta_07())
+
 
 
 def pregunta_08():
@@ -143,7 +143,7 @@ def pregunta_08():
     tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
     tbl0['suma'] = tbl0['_c0'] + tbl0['_c2']
     return tbl0
-print(pregunta_08())
+
 
 
 def pregunta_09():
@@ -164,7 +164,7 @@ def pregunta_09():
     tbl0 = pd.read_csv ("tbl0.tsv", sep="\t")
     tbl0['year'] = tbl0['_c3'].str.split('-').str[0]
     return tbl0
-print(pregunta_09())
+
 
 
 def pregunta_10():
@@ -184,7 +184,7 @@ def pregunta_10():
     tbl0 = pd.read_csv("tbl0.tsv", sep="\t")
     tbl0_grouped = tbl0.groupby('_c1')['_c2'].apply(lambda x: ':'.join(sorted(x.astype(str)))).reset_index()
     return tbl0_grouped
-print(pregunta_10())
+
 
 
 def pregunta_11():
@@ -206,7 +206,7 @@ def pregunta_11():
     tbl1 = pd.read_csv("tbl1.tsv", sep="\t")
     tbl1_grouped = tbl1.groupby('_c0')['_c4'].apply(lambda x: ','.join(sorted(x))).reset_index()
     return tbl1_grouped
-print(pregunta_11())
+
 
 
 def pregunta_12():
@@ -227,7 +227,7 @@ def pregunta_12():
     tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
     tbl2_grouped = tbl2.groupby('_c0').apply(lambda x: ','.join([f"{a}:{b}" for a, b in sorted(zip(x['_c5a'], x['_c5b']))])).reset_index(name='_c5')
     return tbl2_grouped
-print(pregunta_12())
+
 
 
 def pregunta_13():
@@ -248,5 +248,5 @@ def pregunta_13():
     tbl2 = pd.read_csv("tbl2.tsv", sep="\t")
     merged = pd.merge(tbl0, tbl2, on= '_c0')
     sum_by_c1 = merged.groupby('_c1')['_c5b'].sum()
-    return sum_by_c1
-print(pregunta_13())
+    return sum_by_c1 
+
